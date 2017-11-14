@@ -1,0 +1,11 @@
+---
+# check if java is installed
+- stat: path=/usr/bin/java
+  register: java_exists
+
+# prints the result and the softwares location
+- debug:
+    msg: "Is Java Found:{{ java_exists.stat.exists }}"
+
+- include: install-java.yml
+  when: not java_exists.stat.exists
