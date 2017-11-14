@@ -1,0 +1,9 @@
+- hosts: elk
+  gather_facts: False
+  pre_tasks:
+    - name: Set softwares location
+      set_fact:
+          files: "/ansible-repo/playbooks/binaries"
+
+  roles:
+   - { role: jdk }
