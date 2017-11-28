@@ -1,4 +1,3 @@
 ---
-
-- include: 1-install_cfssl_tool.yml
+- import_tasks: 1-install_cfssl_tool.yml
 #- include: 2-install-kubectl.yml
