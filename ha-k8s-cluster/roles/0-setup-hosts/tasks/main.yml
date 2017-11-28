@@ -1,11 +1,8 @@
 ---
 
-- name: Copy hosts template to all nodes
-  template:
-    src: hosts.j2
+- name: Add IP address of all hosts to hosts file
+  lineinfile:
     dest: /etc/hosts
-    backup: yes
-    mode: 0644
-    owner: root
-    group: root
-  ignore_errors: false
+    line: "{{ hostvars[item].ansible_host }} {{ hostvars[item].inventory_hostname }} {{ hostvars[item].inventory_hostname_short }}"
+    state: present
+  with_items: "{{ groups.all-k8s-hosts }}"
