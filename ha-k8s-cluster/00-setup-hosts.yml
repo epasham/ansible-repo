@@ -1,0 +1,8 @@
+- hosts: all_k8s_hosts
+  gather_facts: no
+  become: true
+  become_method: sudo
+  vars_files:
+    - group_vars/all.yml
+  roles:
+    - 0-setup-hosts
