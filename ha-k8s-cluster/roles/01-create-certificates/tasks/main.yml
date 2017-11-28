@@ -1,4 +1,4 @@
 ---
 
 - include: 1-install_cfssl_tool.yml
-- include: 2-install-kubectl.yml
+#- include: 2-install-kubectl.yml
