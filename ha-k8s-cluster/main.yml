@@ -1,15 +1,11 @@
 ---
 # Setup k8s Cluster
 
+# Add k8s host ip to cluster components
 - import_playbook: 00-setup-hosts.yml
-#- hosts: all_k8s_hosts
-#  gather_facts: false
-#  become: true
-#  become_method: sudo
-#  vars_files:
-#    - group_vars/all.yml
-#  roles:
-#    - 0-setup-hosts
+
+# Generate certificates for cluster components
+- import_playbook: 01-create-certificates.yml
 
 #- hosts: client
 #  become: true
