@@ -1,5 +1,4 @@
 ---
----
 # This lab requires the cfssl and cfssljson binaries. Download them from the cfssl repository.
 # https://pkg.cfssl.org/
 # This tasks we will be performed in lb node
