@@ -1,0 +1,96 @@
+---
+# Setup k8s Cluster
+
+- hosts: all-k8s-hosts
+  become: true
+  become_method: sudo
+  vars_files:
+    - group_vars/all
+  roles:
+    - 0-setup-hosts
+
+#- hosts: client
+#  become: true
+#  become_method: sudo
+#  vars_files:
+#    - group_vars/all
+#  roles:
+#    - 1-create-certs
+
+#- hosts: masters
+#  become: true
+#  vars_files:
+#    - group_vars/all
+#  roles:
+#    - 2-etcd-ha-https
+
+#- hosts: masters
+#  become: true
+#  vars_files:
+#    - group_vars/all
+#  roles:
+#    - 3-api-servers
+
+#- hosts: loadbalancers
+#  become: true
+#  become_method: sudo
+#  vars_files:
+#    - group_vars/all
+#  roles:
+#    - 4-kube-api-haproxy
+
+#- hosts: client
+#  vars_files:
+#    - group_vars/all
+#  roles:
+#    - 5-kube-client-remote-access
+
+#- hosts: k8s-master1
+#  become: true
+#  become_method: sudo
+#  vars_files:
+#    - group_vars/all
+#  roles:
+#    - 6-etcd-master-flannel-net
+
+#- hosts: nodes
+#  become: true
+#  become_method: sudo
+#  vars_files:
+#    - group_vars/all
+#  roles:
+#    - 7-workernode-certs
+
+#- hosts: nodes
+#  become: true
+#  become_method: sudo
+#  vars_files:
+#    - group_vars/all
+#  roles:
+#    - 8-worker-flannel-install
+
+#- hosts: nodes
+#  become: true
+#  become_method: sudo
+#  vars_files:
+#    - group_vars/all
+#  roles:
+#    - 9-worker-nodes-setup
+
+#- hosts: client
+#  vars_files:
+#    - group_vars/all
+#  roles:
+#    - 10-get-nodes-status
+
+#- hosts: client
+#  vars_files:
+#    - group_vars/all
+#  roles:
+#    - 11-install-addons
+
+#- hosts: client
+#  vars_files:
+#    - group_vars/all
+#  roles:
+#    - 12-smoke-test
