@@ -1,8 +1,4 @@
 ---
-- hosts: client
-  become: true
-  become_method: sudo
-  vars_files:
-    - group_vars/all
-  roles:
-    - 01-create-certificates
+
+- include: 1-install_cfssl_tool.yml
+- include: 2-install-kubectl.yml
