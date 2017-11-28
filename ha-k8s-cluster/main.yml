@@ -1,7 +1,7 @@
 ---
 # Setup k8s Cluster
 
-- hosts: all-k8s-hosts
+- hosts: all_k8s_hosts
   gather_facts: false
   become: true
   become_method: sudo
