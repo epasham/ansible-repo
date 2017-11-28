@@ -5,9 +5,9 @@ k8s-master3 ansible_host=192.168.0.22
 k8s-node1 ansible_host=192.168.0.23
 
 k8s-lb-01 ansible_host=192.168.0.23
-k8s-lb-02 ansible_host=192.168.0.24
+k8s-lb-02 ansible_host=192.168.0.19
 
-k8s-client ansible_host=192.168.0.24
+k8s-client ansible_host=192.168.0.19
 
 [all_k8s_hosts]
 k8s-master1
