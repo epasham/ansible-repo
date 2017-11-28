@@ -3,6 +3,6 @@
   become: true
   become_method: sudo
   vars_files:
-    - group_vars/all
+    - group_vars/all.yml
   roles:
     - 01-create-certificates
