@@ -1,7 +1,7 @@
 ---
 # Setup k8s Cluster
 
-- include: 00-setup-hosts.yml
+- import_playbook: 00-setup-hosts.yml
 #- hosts: all_k8s_hosts
 #  gather_facts: false
 #  become: true
