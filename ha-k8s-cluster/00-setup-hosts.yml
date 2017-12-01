@@ -5,4 +5,4 @@
   vars_files:
     - group_vars/all.yml
   roles:
-    - 0-setup-hosts
+    - 00-setup-hosts

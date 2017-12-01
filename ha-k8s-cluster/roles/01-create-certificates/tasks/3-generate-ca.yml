@@ -1,0 +1,40 @@
+---
+- name: Create a directory to store certificates
+  file:
+    path: /k8s/certs
+    state: directory
+    mode: 0755
+    owner: "{{ansible_user}}"
+  ignore_errors: false
+
+- name: Create a temp directory to store files
+  file:
+    path: /k8s/temp
+    state: directory
+    mode: 0755
+    owner: "{{ansible_user}}"
+  ignore_errors: false
+
+- name: Copy CA config and csr files
+  copy:
+    src: "{{item}}"
+    dest: /k8s/certs/
+  with_items:
+    - ca-config.json
+    - ca-csr.json
+  ignore_errors: false
+
+- name: Generate a CA certificate and a private key using gen-ca-certs.sh
+  script: gen-ca-certs.sh
+  ignore_errors: false
+
+- name: Check required files ca-key.pem and ca.pem got created
+  stat:
+    path: /k8s/certs/ca.pem
+  register: ca_file
+  ignore_errors: false
+
+- fail:
+    msg: "[ ERROR ] ca-key.pem and ca.pem files are failed to be created."
+  when: ca_file.stat.path is not defined
+  ignore_errors: false
