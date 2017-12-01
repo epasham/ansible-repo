@@ -1,7 +1,7 @@
 ---
-# This lab requires the cfssl and cfssljson binaries. Download them from the cfssl repository.
+# cfssl and cfssljson binaries are required to generate certs. Download them from the cfssl repository.
 # https://pkg.cfssl.org/
-# This tasks we will be performed in lb node
+# This tasks will be performed on client machine
 
 - name: Install cfssl and cfssljson binaries
   get_url:
@@ -32,7 +32,7 @@
     - cfssljson_linux-amd64
 
 - name: Verify cfssl version 1.2.0 or higher is installed
-  shell: cfssl version
+  shell: /usr/local/bin/cfssl version
   register: cfssl_version
 - debug:
-    var: cfssl_version.stdout
+    msg: "{{cfssl_version.stdout_lines}}"

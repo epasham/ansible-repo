@@ -1,6 +1,5 @@
 ---
 - hosts: client
-  gather_facts: no
   become: true
   become_method: sudo
   vars_files:
