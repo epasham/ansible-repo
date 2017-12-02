@@ -2,7 +2,7 @@
 # Setup k8s Cluster
 
 # Add k8s host ip to cluster components
-#- import_playbook: 00-setup-hosts.yml
+- import_playbook: 00-setup-hosts.yml
 
 # Generate certificates for cluster components
 - import_playbook: 01-create-certificates.yml
