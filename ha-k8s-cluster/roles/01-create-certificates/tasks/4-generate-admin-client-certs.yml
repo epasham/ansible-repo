@@ -27,7 +27,7 @@
   
 - name: Verify that admin-key.pem file is created
   stat:
-    path: /k8s/certs/admin_key.pem
+    path: /k8s/certs/admin-key.pem
   register: admin_key_cert
   ignore_errors: false
 
