@@ -24,7 +24,7 @@
   
 - name: Check if worker csr json file is created
   fail: 
-    msg="Worker csr json does not exists."
+    msg: "Worker csr json does not exists."
   when: item.stat.path is not defined
   with_items: worker_csr_json.results
   
