@@ -23,11 +23,11 @@
 #  debug: var=worker_csr_json
   
 - debug: var={{item.stat.path}}
-  with_items: {{ worker_csr_json.results }}
+  with_items: "{{ worker_csr_json.results }}"
   
 # might as well try with echo too
-- shell: echo {{ item.status }}
-  with_items: {{ worker_csr_json.results }}
+- shell: echo {{ item.stat.path }}
+  with_items: "{{ worker_csr_json.results }}"
   
 #- fail:
 #    msg: "[ ERROR ] Worker nodes csr files are failed to be created."
