@@ -1,0 +1,37 @@
+---
+# In this section we will generate TLS certificates for each Kubernetes component 
+# and a client certificate for the Kubernetes admin user.
+
+# Create the Admin client certificate from admin certificate signing request
+
+- name: Copy admin certificate signing request file to client machine
+  copy:
+    src: admin-csr.json
+    dest: /k8s/certs/
+  ignore_errors: false
+
+- name: Generate the admin client certificate and private key "generate-admin-client-certs.sh"
+  script: generate-admin-client-certs.sh
+  ignore_errors: false
+
+- name: Verify that admin.pem file is created
+  stat:
+    path: /k8s/certs/admin.pem
+  register: admin_cert
+  ignore_errors: false
+
+- fail:
+    msg: "[ ERROR ] admin.pem file is failed to be created."
+  when: admin_cert.stat.path is not defined
+  ignore_errors: false
+  
+- name: Verify that admin-key.pem nad admin.pem files got created
+  stat:
+    path: /k8s/certs/admin.pem
+  register: admin_cert
+  ignore_errors: false
+
+- fail:
+    msg: "[ ERROR ] admin-key.pem nad admin.pem file failed to creat."
+  when: admin_cert.stat.path is not defined
+  ignore_errors: false
