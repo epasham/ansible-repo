@@ -24,3 +24,9 @@
   
 - debug: msg="item.item={{item.stat.path}}"
   with_items: "{{ worker_csr_json.results }}" 
+  
+- fail:
+    msg: "[ ERROR ] Worker nodes csr files are failed to be created."
+  with_items: "{{ worker_csr_json.results }}"  
+  when: {{ item.stat.path }} is not defined
+  ignore_errors: false 
