@@ -10,7 +10,7 @@
     dest: /k8s/certs/
   ignore_errors: false
 
-- name: Generate the admin client certificate and private key "generate-admin-client-certs.sh"
+- name: Generate the admin client certificate and private key using generate-admin-client-certs.sh
   script: generate-admin-client-certs.sh
   ignore_errors: false
 
