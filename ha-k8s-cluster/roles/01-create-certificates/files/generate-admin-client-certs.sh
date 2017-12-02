@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Generate the admin client certificate and private key
 cd /k8s/certs/;
 /usr/local/bin/cfssl gencert \
   -ca=ca.pem \
