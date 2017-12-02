@@ -18,19 +18,16 @@
     path: /k8s/certs/{{hostvars[item].ansible_host}}-csr.json
   register: worker_csr_json
   with_items: "{{ groups['nodes'] }}"
-  
-#- name: Print the output to the console.
-#  debug: var=worker_csr_json
-  
+   
 - debug: msg={{item.stat.path}}
   with_items: "{{ worker_csr_json.results }}"
   
-#- fail:
-#    msg: "[ ERROR ] Worker nodes csr files are failed to be created."
-#  with_items: "{{ worker_csr_json.results }}"  
-#  when: "{{ item.stat.path }}" is not defined
-#  ignore_errors: false 
-
+- name: Check if worker csr json file is created
+  fail: msg="Worker csr json does not exists."
+  failed_when: >
+    item.stat.path is not defined
+  with_items: worker_csr_json.results
+  
 - name: Generate a certificate and private key for each Kubernetes worker node
   script: generate-worker-certs.sh {{ hostvars[item].ansible_host }}
   with_items: "{{ groups['nodes'] }}"
