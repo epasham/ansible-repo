@@ -2,3 +2,4 @@
 - import_tasks: 1-install_cfssl_tool.yml
 - import_tasks: 2-install-kubectl.yml
 - import_tasks: 3-generate-ca.yml
+- import_tasks: 4-generate-admin-client-certs.yml
