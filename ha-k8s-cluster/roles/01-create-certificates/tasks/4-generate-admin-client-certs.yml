@@ -25,13 +25,13 @@
   when: admin_cert.stat.path is not defined
   ignore_errors: false
   
-- name: Verify that admin-key.pem nad admin.pem files got created
+- name: Verify that admin-key.pem file is created
   stat:
-    path: /k8s/certs/admin.pem
-  register: admin_cert
+    path: /k8s/certs/admin_key.pem
+  register: admin_key_cert
   ignore_errors: false
 
 - fail:
-    msg: "[ ERROR ] admin-key.pem nad admin.pem file failed to creat."
-  when: admin_cert.stat.path is not defined
+    msg: "[ ERROR ] admin-key.pem file is failed to be created."
+  when: admin_key_cert.stat.path is not defined
   ignore_errors: false
