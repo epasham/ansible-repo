@@ -26,7 +26,7 @@
   fail: 
     msg: "Worker csr json does not exists."
   when: item.stat.path is not defined
-  with_items: "{{ orker_csr_json.results }}"
+  with_items: "{{ worker_csr_json.results }}"
   
 - name: Generate a certificate and private key for each Kubernetes worker node
   script: generate-worker-certs.sh {{ hostvars[item].ansible_host }}
