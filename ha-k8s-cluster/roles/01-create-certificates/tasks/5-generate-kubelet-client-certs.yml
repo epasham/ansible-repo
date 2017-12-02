@@ -23,9 +23,9 @@
   with_items: "{{ worker_csr_json.results }}"
   
 - name: Check if worker csr json file is created
-  fail: msg="Worker csr json does not exists."
-  failed_when: >
-    item.stat.path is not defined
+  fail: 
+    msg="Worker csr json does not exists."
+  when: item.stat.path is not defined
   with_items: worker_csr_json.results
   
 - name: Generate a certificate and private key for each Kubernetes worker node
