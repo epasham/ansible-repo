@@ -25,16 +25,27 @@
   ignore_errors: false
 
 - name: Generate a CA certificate and a private key using gen-ca-certs.sh
-  script: gen-ca-certs.sh
+  script: generate-ca-certs.sh
   ignore_errors: false
 
-- name: Check required files ca-key.pem and ca.pem got created
+- name: Check if ca.pem is created
   stat:
     path: /k8s/certs/ca.pem
   register: ca_file
   ignore_errors: false
 
 - fail:
-    msg: "[ ERROR ] ca-key.pem and ca.pem files are failed to be created."
+    msg: "[ ERROR ] ca.pem file is failed to be created."
   when: ca_file.stat.path is not defined
+  ignore_errors: false
+
+- name: Check if ca-key.pem is created
+  stat:
+    path: /k8s/certs/ca.pem
+  register: ca_key_file
+  ignore_errors: false
+
+- fail:
+    msg: "[ ERROR ] ca-key.pem file is failed to be created."
+  when: ca_key_file.stat.path is not defined
   ignore_errors: false
