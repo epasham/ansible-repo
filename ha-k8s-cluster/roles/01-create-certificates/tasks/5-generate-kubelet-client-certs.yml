@@ -9,6 +9,6 @@
 # Generate a certificate and private key for each Kubernetes worker node:
 
 - name: Create csr.json for each worker machine using create-worker-csr-json.sh
-  script: create-worker-csr-json.sh {{ hostvars[item].ansible_host }}
+  script: generate-worker-csr-json.sh {{ hostvars[item].ansible_host }}
   with_items: "{{ groups['nodes'] }}"
   ignore_errors: false
