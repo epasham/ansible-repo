@@ -1,4 +1,10 @@
 ---
+# Provisioning a CA and Generating TLS Certificates
+#
+# In this section you will provision a PKI Infrastructure using CloudFlare's PKI toolkit, cfssl.
+# Then use it to bootstrap a Certificate Authority
+# and generate TLS certificates for the following components: etcd, kube-apiserver, kubelet, and kube-proxy
+
 - hosts: client
   become: true
   become_method: sudo
