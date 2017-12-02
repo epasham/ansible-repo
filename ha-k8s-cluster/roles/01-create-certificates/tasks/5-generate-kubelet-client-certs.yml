@@ -25,10 +25,6 @@
 - debug: var={{item.stat.path}}
   with_items: "{{ worker_csr_json.results }}"
   
-# might as well try with echo too
-- shell: echo {{ item.stdout }}
-  with_items: "{{ worker_csr_json.results }}"
-  
 #- fail:
 #    msg: "[ ERROR ] Worker nodes csr files are failed to be created."
 #  with_items: "{{ worker_csr_json.results }}"  
