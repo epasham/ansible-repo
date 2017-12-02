@@ -22,5 +22,5 @@
 - name: Print the output to the console.
   debug: var=worker_csr_json
   
-- debug: msg="item.item={{item.item.name}}, item.stdout={{item.stdout}}"
+- debug: msg="item.item={{item.stat.path}}, item.stdout={{item.stdout}}"
   with_items: "{{ worker_csr_json.results }}" 
