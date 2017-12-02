@@ -15,4 +15,4 @@
   ignore_errors: false
   
 - name: Print the output to the console.
-      debug: var=worker_csr_json
+  debug: var=worker_csr_json
