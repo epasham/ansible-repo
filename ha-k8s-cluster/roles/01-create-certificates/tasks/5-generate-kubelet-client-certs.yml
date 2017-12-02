@@ -10,9 +10,14 @@
 
 - name: Create csr.json for each worker machine using create-worker-csr-json.sh
   script: generate-worker-csr-json.sh {{ hostvars[item].ansible_host }}
-  register: worker_csr_json
   with_items: "{{ groups['nodes'] }}"
   ignore_errors: false
+  
+- name: Verify worker csr files are generated
+  stat:
+    path: /k8s/certs/{{hostvars[item].ansible_host}}-csr.json
+  register: worker_csr_json
+  with_items: "{{ groups['nodes'] }}"
   
 - name: Print the output to the console.
   debug: var=worker_csr_json
