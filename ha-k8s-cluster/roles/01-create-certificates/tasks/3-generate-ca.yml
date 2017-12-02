@@ -24,7 +24,7 @@
     - ca-csr.json
   ignore_errors: false
 
-- name: Generate a CA certificate and a private key using gen-ca-certs.sh
+- name: Generate a CA certificate and a private key using generate-ca-certs.sh
   script: generate-ca-certs.sh
   ignore_errors: false
 
