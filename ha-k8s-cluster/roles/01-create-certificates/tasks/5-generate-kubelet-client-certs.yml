@@ -22,7 +22,7 @@
 #- name: Print the output to the console.
 #  debug: var=worker_csr_json
   
-- debug: msg="item.item={{item.stat.path}}"
+- debug: msg="item.item={{item.item.stat.path}}"
   with_items: "{{ worker_csr_json.results }}" 
   
 #- fail:
