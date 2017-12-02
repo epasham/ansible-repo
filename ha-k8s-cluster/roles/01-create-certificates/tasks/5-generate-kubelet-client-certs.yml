@@ -19,8 +19,8 @@
   register: worker_csr_json
   with_items: "{{ groups['nodes'] }}"
    
-- debug: msg={{item.stat.path}}
-  with_items: "{{ worker_csr_json.results }}"
+#- debug: msg={{item.stat.path}}
+#  with_items: "{{ worker_csr_json.results }}"
   
 - name: Check if worker csr json file is created
   fail: 
@@ -38,7 +38,9 @@
     path: /k8s/certs/{{hostvars[item].ansible_host}}-key.pem
   register: worker_key
   with_items: "{{ groups['nodes'] }}"
-  
-- debug: msg={{item.stat.path}}
+ 
+- name: Check if worker certs are generated
+  fail: 
+    msg: "Worker cert key file does not exists."
+  when: item.stat.path is not defined
   with_items: "{{ worker_key.results }}"
-  
