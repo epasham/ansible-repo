@@ -3,3 +3,4 @@
 cfssl_linux: https://pkg.cfssl.org/R1.2/cfssl_linux-amd64
 cfssljson_linux: https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
 etcd_pkg: https://github.com/coreos/etcd/releases/download/v3.2.6/etcd-v3.2.6-linux-amd64.tar.gz
+kubectl_pkg: https://storage.googleapis.com/kubernetes-release/release/v1.7.4/bin/linux/amd64/kubectl
