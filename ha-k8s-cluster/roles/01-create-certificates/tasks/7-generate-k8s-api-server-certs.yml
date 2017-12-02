@@ -3,19 +3,18 @@
 # The Kubernetes public IP address will be included in the list of subject alternative names for the Kubernetes server certificate.
 # This will ensure the TLS certificate is valid for remote client access
 
-- name: Copy kube api certificate signing request
+- name: Copy k8s api certificate signing request
   copy:
     src: kubernetes-csr.json
-    dest: /k8s-v1.7/certs/
+    dest: /k8s/certs/
     backup: no
   ignore_errors: false
 
-- name: Copy gen-kube-api-srv-cert.j2 script template to client machine
+- name: Copy generate-k8s-api-server-cert.j2 script template to client machine
   template:
-    src: 8-gen-kube-api-srv-cert.j2
-    dest: /k8s-v1.7/certs/gen-kube-api-srv-cert.sh
+    src: 7-generate-k8s-api-server-cert.j2
+    dest: /k8s/certs/generate-k8s-api-server-cert.sh
     mode: 0755
-    owner: kubeuser
   ignore_errors: false
 
 - name: Generate the Kubernetes certificate and private key
