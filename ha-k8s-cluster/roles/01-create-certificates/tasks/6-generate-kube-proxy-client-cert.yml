@@ -12,18 +12,24 @@
   script: generate-kube-proxy-client-cert.sh
   ignore_errors: false
 
-- name: Check required files kube-proxy-key.pem and kube-proxy.pem got created
+- name: Check if kube-proxy.pem file is created
   stat:
-    path: /k8s-v1.7/certs/kube-proxy.pem
-  register: kproxy_cert
-  ignore_errors: false
-
-- debug:
-    msg: "kube-proxy-key.pem and kube-proxy.pem files got to created."
-  when: kproxy_cert.stat.path is defined
+    path: /k8s/certs/kube-proxy.pem
+  register: kube_proxy
   ignore_errors: false
 
 - fail:
-    msg: "Whoops! kube-proxy-key.pem and kube-proxy.pem files are failed to create."
-  when: kproxy_cert.stat.path is not defined
+    msg: "[ ERROR ]  kube-proxy.pem file is failed to be created."
+  when: kube_proxy.stat.path is not defined
+  ignore_errors: false
+  
+- name: Check if kube-proxy-key.pem file is created
+  stat:
+    path: /k8s/certs/kube-proxy-key.pem
+  register: kube_proxy_key
+  ignore_errors: false
+
+- fail:
+    msg: "[ ERROR ] kube-proxy-key.pem file is failed to be created."
+  when: kube_proxy_key.stat.path is not defined
   ignore_errors: false
