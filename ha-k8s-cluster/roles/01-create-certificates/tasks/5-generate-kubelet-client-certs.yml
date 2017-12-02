@@ -32,15 +32,27 @@
   script: generate-worker-certs.sh {{ hostvars[item].ansible_host }}
   with_items: "{{ groups['nodes'] }}"
   ignore_errors: false
+ 
+- name: Verify worker certificate are generated
+  stat:
+    path: /k8s/certs/{{hostvars[item].ansible_host}}.pem
+  register: worker
+  with_items: "{{ groups['nodes'] }}"
+ 
+- name: Check if worker cert is generated
+  fail: 
+    msg: "Worker cert file does not exists."
+  when: item.stat.path is not defined
+  with_items: "{{ worker.results }}"
   
-- name: Verify worker certificates are generated
+- name: Verify worker certificate key is generated
   stat:
     path: /k8s/certs/{{hostvars[item].ansible_host}}-key.pem
   register: worker_key
   with_items: "{{ groups['nodes'] }}"
  
-- name: Check if worker certs are generated
+- name: Check if worker certificate key is generated
   fail: 
-    msg: "Worker cert key file does not exists."
+    msg: "Worker certificate key file does not exists."
   when: item.stat.path is not defined
   with_items: "{{ worker_key.results }}"
