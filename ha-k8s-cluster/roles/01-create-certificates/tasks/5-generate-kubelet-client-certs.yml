@@ -11,7 +11,7 @@
 - name: Copy create-worker-csr-json.j2 template to client machine
   template:
     src: 5-create-worker-csr-json.j2
-    dest: /k8s-v1.7/certs/create-worker-csr-json.sh
+    dest: /k8s/certs/create-worker-csr-json.sh
     mode: 0744
     backup: no
   ignore_errors: false
