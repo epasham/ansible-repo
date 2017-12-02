@@ -30,3 +30,18 @@
 #  with_items: "{{ worker_csr_json.results }}"  
 #  when: "{{ item.stat.path }}" is not defined
 #  ignore_errors: false 
+
+- name: Generate a certificate and private key for each Kubernetes worker node
+  script: generate-worker-certs.sh {{ hostvars[item].ansible_host }}
+  with_items: "{{ groups['nodes'] }}"
+  ignore_errors: false
+  
+- name: Verify worker certificates are generated
+  stat:
+    path: /k8s/certs/{{hostvars[item].ansible_host}}-key.pem
+  register: worker_key
+  with_items: "{{ groups['nodes'] }}"
+  
+- debug: msg={{item.stat.path}}
+  with_items: "{{ worker_key.results }}"
+  
