@@ -1,3 +1,0 @@
----
-- import_tasks: 1-kubelet-k8s-cfg.yml
-- import_tasks: 2-kube-proxy-k8s-cfg.yml
