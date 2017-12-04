@@ -7,6 +7,9 @@
 # Generate certificates for cluster components
 - import_playbook: 01-create-certificates.yml
 
+# Generating Kubernetes Configuration Files for Authentication
+- import_playbook: 02-generate-k8s-config.yml
+
 #- hosts: client
 #  become: true
 #  become_method: sudo
