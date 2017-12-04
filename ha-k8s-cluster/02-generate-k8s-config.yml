@@ -1,5 +1,3 @@
-# Generating Kubernetes Configuration Files for Authentication
-#
 # In this section you will generate Kubernetes configuration files, also known as kubeconfigs, 
 # which enable Kubernetes clients to locate and authenticate to the Kubernetes API Servers.
 #
