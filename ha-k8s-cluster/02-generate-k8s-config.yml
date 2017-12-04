@@ -1,0 +1,17 @@
+# Generating Kubernetes Configuration Files for Authentication
+#
+# In this section you will generate Kubernetes configuration files, also known as kubeconfigs, 
+# which enable Kubernetes clients to locate and authenticate to the Kubernetes API Servers.
+#
+# When generating kubeconfig files for Kubelets the client certificate matching the Kubelet's node name must be used. 
+# This will ensure Kubelets are properly authorized by the Kubernetes Node Authorizer.
+
+# Generate a kubeconfig file for each worker node:
+
+- hosts: client
+  become: true
+  become_method: sudo
+  vars_files:
+    - group_vars/all.yml
+  roles:
+    - 02-generate-k8s-cfg
