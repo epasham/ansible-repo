@@ -1,4 +1,9 @@
 ---
+k8s_cluster_name: kubernetes-the-hard-way
+k8s_master1_ip: 192.168.0.18
+k8s_master2_ip: 192.168.0.19
+k8s_master3_ip: 192.168.0.20
+
 # Packages
 cfssl_linux: https://pkg.cfssl.org/R1.2/cfssl_linux-amd64
 cfssljson_linux: https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
