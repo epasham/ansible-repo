@@ -18,26 +18,42 @@
   ignore_errors: false
 
 - name: Generate the Kubernetes certificate and private key
-  shell: sh /k8s-v1.7/certs/gen-kube-api-srv-cert.sh
+  shell: sh /k8s/certs/generate-k8s-api-server-cert.sh
   ignore_errors: false
 
-- name: Check required files kubernetes-key.pem and kubernetes.pem got created
+- name: Check if kubernetes.pem file is created
   stat:
-    path: /k8s-v1.7/certs/kubernetes.pem
-  register: kubeapi_cert
+    path: /k8s/certs/kubernetes.pem
+  register: k8s_api_cert
   ignore_errors: false
 
 - debug:
-    msg: "Whoops! kubernetes-key.pem and kubernetes.pem files got created."
-  when: kubeapi_cert.stat.path is defined
+    msg: "[ Information ] kubernetes.pem file is created."
+  when: k8s_api_cert.stat.path is defined
   ignore_errors: false
 
 - fail:
-    msg: "Whoops! kubernetes-key.pem and kubernetes.pem files failed to create."
-  when: kubeapi_cert.stat.path is not defined
+    msg: "[ ERROR ] kubernetes.pem file is failed to be created."
+  when: k8s_api_cert.stat.path is not defined
   ignore_errors: false
 
-- name: Delete script gen-kube-api-srv-cert.sh
+- name: Check if kubernetes-key.pem file is created
+  stat:
+    path: /k8s/certs/kubernetes-key.pem
+  register: k8s_api_cert_key
+  ignore_errors: false
+
+- debug:
+    msg: "[ Information ] kubernetes-key.pem file is created."
+  when: k8s_api_cert_key.stat.path is defined
+  ignore_errors: false
+
+- fail:
+    msg: "[ ERROR ] kubernetes-key.pem file is failed to be created."
+  when: k8s_api_cert_key.stat.path is not defined
+  ignore_errors: false
+
+- name: Delete script generate-k8s-api-server-cert.sh
   file:
-    path: /k8s-v1.7/certs/gen-kube-api-srv-cert.sh
+    path: /k8s/certs/generate-k8s-api-server-cert.sh
     state: absent
