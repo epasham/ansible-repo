@@ -5,3 +5,4 @@
 - import_tasks: 4-generate-admin-client-certs.yml
 - import_tasks: 5-generate-kubelet-client-certs.yml
 - import_tasks: 6-generate-kube-proxy-client-cert.yml
+- import_tasks: 7-generate-k8s-api-server-certs.yml
