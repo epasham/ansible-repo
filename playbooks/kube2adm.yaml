@@ -1,0 +1,13 @@
+- hosts: k8s-master
+  vars:
+    kubernetes_role: "master"
+  roles:
+  - docker
+  - kubernetes
+
+- hosts: k8s-nodes
+  vars:
+    kubernetes_role: "node"
+  roles:
+  - docker
+  - kubernetes
